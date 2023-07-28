@@ -13,8 +13,7 @@ namespace BlogManagementWeb.Service
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(BaseUrl);
-            // _apiBaseUrl = configuration.GetValue<string>("ServiceUrls:BlogManagementAPI");
-            // _blogRepository = blogRepository;
+            
         }
         public async Task<IEnumerable<Blog>> GetUsersAsync()
         {

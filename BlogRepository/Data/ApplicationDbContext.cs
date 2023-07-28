@@ -19,6 +19,8 @@ namespace BlogData
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Users> Users { get; set; }
        public DbSet<Subscription> Subscriptions { get; set; }
+       public DbSet<Subscription> ApplicationUser { get; set; }
+
        
 
     }

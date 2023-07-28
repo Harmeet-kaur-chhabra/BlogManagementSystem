@@ -10,7 +10,7 @@ namespace BlogManagementWeb.Service
         private readonly HttpClient _httpClient;
         private const string BaseUrl = "https://localhost:7097";
 
-        public SubscriptionService(HttpClient httpClient, IConfiguration configuration/*, IBlogRepository blogRepository*/)
+        public SubscriptionService(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(BaseUrl);

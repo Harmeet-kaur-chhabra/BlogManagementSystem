@@ -69,7 +69,7 @@ namespace BlogWeb.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await blogService.DeleteBlogAsync(id);
-            TempData["Success"] = "Blog Deletedd Successfully";
+            TempData["Success"] = "Blog Deleted Successfully";
             return RedirectToAction(nameof(Index));
         }
     }

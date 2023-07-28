@@ -13,8 +13,7 @@ namespace BlogWeb.Service
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(BaseUrl);
-            // _apiBaseUrl = configuration.GetValue<string>("ServiceUrls:BlogManagementAPI");
-            // _blogRepository = blogRepository;
+            
         }
         public async Task<IEnumerable<Blog>> GetblogsAsync()
         {
@@ -41,7 +40,7 @@ namespace BlogWeb.Service
             string json = JsonConvert.SerializeObject(blog);
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            HttpResponseMessage response = await _httpClient.PostAsync("/api/Blog/", content);
+            HttpResponseMessage response = await _httpClient.PostAsync("/api/Blog/Create/", content);
             response.EnsureSuccessStatusCode();
             string responseContent = await response.Content.ReadAsStringAsync();
             Blog createdBlogPost = JsonConvert.DeserializeObject<Blog>(responseContent);
