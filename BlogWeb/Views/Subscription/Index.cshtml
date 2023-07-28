@@ -23,9 +23,9 @@
             @foreach (var sub in Model)
             {
                 <tr>
-                    <td>@sub.Blog.Id</td>
-                    <td>@sub.Blog.Id</td>
-                    <td>@sub.Blog.SubscriptionsAllowed</td>
+                    <td>@sub.Id</td>
+                    <td>@sub.BlogId</td>
+                    @* <td>@sub.Blog.SubscriptionsAllowed</td> *@
                     <td>
 
                         <form asp-action="Subscribe" method="post">

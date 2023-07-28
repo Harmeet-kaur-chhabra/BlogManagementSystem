@@ -1,5 +1,6 @@
 ﻿using BlogData.Repository.IRepository;
 using BlogModels;
+using BlogModels.Dto;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace BlogData.Repository
         public Repository(ApplicationDbContext _dbContext)
         {
             dbContext = _dbContext;
-           // dbContext.Subscriptions.Include(u => u.Blog).ToList();
+         
             this.dbSet = _dbContext.Set<T>();
 
 
@@ -70,8 +71,6 @@ namespace BlogData.Repository
 
             return query.ToList();
         }
-
-
 
         public void Remove(T entity)
         {
