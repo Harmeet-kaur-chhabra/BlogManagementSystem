@@ -1,0 +1,48 @@
+﻿@using BlogModels;
+@model IEnumerable<Subscription>
+
+
+<h2>Blog Posts</h2>
+@*<div class="col text-end pt-1">
+    <a asp-controller="Subscription" asp-action="Subscribe" class="btn btn-outline-primary"><i class="bi bi-plus-square-fill"></i>Subscribe Blog</a>
+</div>*@
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Title</th>
+                <th>Blog Category</th>
+                <th>Available Subscription</th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var blogs in Model)
+            {
+                <tr>
+                   @*  <td>@blogs.Blog.Id</td>
+                    <th>@blogs.BlogId</th>  *@
+
+                    <td>
+
+                        <form asp-action="Subscribe" method="post">
+                            <input type="hidden" name="id" value="@blogs.BlogId" />
+                            <button type="submit">Approve</button>
+                        </form>
+                        <form asp-action="UnSubscribe" method="post">
+                            <input type="hidden" name="id" value="@blogs.BlogId" />
+                            <button type="submit">Reject</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No blog posts available.</p>
+}
