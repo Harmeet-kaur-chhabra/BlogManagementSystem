@@ -20,23 +20,29 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <u l class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Blog" asp-action="Index">Blog</a>
                         </li>
+                        @if (User.IsInRole(SD.Role_Customer))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Subscription" asp-action="Index">Subscription</a>
+                            </li>
+                        }
+                        @if(User.IsInRole(SD.Role_Admin)){
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Subscription" asp-action="Index">Subscription</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Approved Blog</a>
                         </li>
-                       @*  if(User.IsInRole(SD.Role_Admin)){
- *@
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Pending" asp-action="Index">Pending Blogs</a>
-                        </li>
-                       @*  } *@
-                    </ul>
+                        }
+                    </u>
                     <partial name="_LoginPartial" />
                 </div>
             </div>

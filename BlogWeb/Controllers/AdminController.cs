@@ -1,12 +1,15 @@
 ﻿using BlogManagementWeb.Service;
+using BlogUtility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogWeb.Controllers
 {
+    [Authorize(Roles =SD.Role_Admin)]
     public class AdminController : Controller
         {
             private readonly IAdminService _adminService;
-
+        
             public AdminController(IAdminService adminService)
             {
                 _adminService = adminService;

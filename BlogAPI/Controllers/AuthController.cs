@@ -1,6 +1,7 @@
-﻿/*using AutoMapper;
+﻿using AutoMapper;
+using BlogData.Repository.IRepository;
+using BlogModels;
 using BlogModels.Dto;
-
 using Microsoft.AspNetCore.Mvc;
 using ServiceStack.Auth;
 
@@ -10,41 +11,43 @@ namespace BlogMangementApi.Controllers
     [Route("/api/Auth")]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthRepository _authRepo;
 
-        private readonly IMapper _mapper;
-        public AuthController(IAuthRepository authRepo, IMapper mapper)
+        private readonly IAuthRepository<Users> _authRepository;
+
+
+        public AuthController(IAuthRepository<Users> authRepository)
         {
-
-            _authRepo = authRepo;
-            _mapper = mapper;
-
+            _authRepository = authRepository;
         }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
         {
-            var loginResponse = await _authRepo.Login(model);
+            var loginResponse = await _authRepository.Login(model);
             if (loginResponse.User == null || string.IsNullOrEmpty(loginResponse.Token))
             {
-                return BadRequest(new { message = "Username or password is incorrect" });
+                ModelState.AddModelError("Custom Error", "Name & password Invalid!!");
+                return BadRequest(ModelState);
+
             }
+
             return Ok(loginResponse);
         }
+
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] RegistrationRequestDto model)
+        public async Task<IActionResult> Register([FromBody] RegistrationRequestDto registrationRequestDTO)
         {
-            bool ifUserNameUnique = _authRepo.IsUniqueUser(model.UserName);
+            bool ifUserNameUnique = _authRepository.IsUniqueUser(registrationRequestDTO.UserName);
             if (!ifUserNameUnique)
             {
                 return BadRequest(new { message = "Username already exists" });
             }
-            var user = await _authRepo.Register(model);
+            var user = await _authRepository.Register(registrationRequestDTO);
             if (user == null)
             {
                 return BadRequest(new { message = "Error while registering" });
             }
-            return Ok(model);
+            return Ok(registrationRequestDTO);
         }
     }
 }
-*/

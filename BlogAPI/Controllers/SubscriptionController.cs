@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using BlogData.Repository;
 using BlogModels;
 using BlogModels.Dto;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BlogAPI.Controllers
 {
@@ -43,6 +44,7 @@ namespace BlogAPI.Controllers
 
 
         [HttpPost]
+
         public IActionResult CreateSubscription([FromBody] SubscriptionDto subscription)
         {
             if (subscription == null)
@@ -59,7 +61,7 @@ namespace BlogAPI.Controllers
             var subscriptions = new Subscription
             {
                 BlogId = subscription.BlogId,
-             //   Email = subscrip.Email
+             
 
             };
             Subscription result = _mapper.Map<Subscription>(subscriptions);
@@ -71,7 +73,7 @@ namespace BlogAPI.Controllers
             _subRepo.Save();
             return Ok(result);
         }
-
+       
         [HttpDelete("{id}")]
         public IActionResult DeleteSubscription(int subscriptionId)
         {

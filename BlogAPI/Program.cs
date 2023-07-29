@@ -2,6 +2,7 @@
 using BlogData;
 using BlogData.Repository;
 using BlogData.Repository.IRepository;
+using BlogModels;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -16,8 +17,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IBlogsRepository,BlogsRepository > ();
+
+builder.Services.AddAutoMapper(typeof(MappingConfig));
+builder.Services.AddScoped<IBlogsRepository, BlogsRepository>();
+builder.Services.AddScoped<IAuthRepository<Users>, AuthRepository>();
+builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
+builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
   options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),
@@ -41,10 +46,7 @@ builder.Services.AddAuthentication(x =>
         };
     }); ;
 
-builder.Services.AddAutoMapper(typeof(MappingConfig));
-builder.Services.AddScoped<IBlogsRepository, BlogsRepository>();
-builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
-builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(options => {
 options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
 {

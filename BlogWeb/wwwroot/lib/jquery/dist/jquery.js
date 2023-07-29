@@ -3595,7 +3595,9 @@ jQuery.Callbacks = function( options ) {
 			},
 
 			// Disable .fire and .add
-			// Abort any current/pending executions
+			// Abort any current
+			
+			executions
 			// Clear all callbacks and values
 			disable: function() {
 				locked = queue = [];

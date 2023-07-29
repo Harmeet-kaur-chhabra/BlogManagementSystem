@@ -29,6 +29,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Blog.Models\BlogModels.csproj" />
     <ProjectReference Include="..\BlogRepository\BlogData.csproj" />
+    <ProjectReference Include="..\BlogUtility\BlogUtility.csproj" />
     <ProjectReference Include="..\BlogWeb\BlogWeb.csproj" />
   </ItemGroup>
 

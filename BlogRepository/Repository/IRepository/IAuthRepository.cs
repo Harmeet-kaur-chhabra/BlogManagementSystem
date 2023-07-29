@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 
 namespace BlogData.Repository.IRepository
 {
-    public interface IAuthRepository : IRepository<Users>
-    {
-        bool IsUniqueUser(string username);
-        Task<LoginResponseDto> Login(LoginRequestDto loginRequestDTO);
-        Task<Users> Register(RegistrationRequestDto registrationRequestDto);
-        Task<Users> UpdateAsync(Users entity);
+        public interface IAuthRepository<T>where T : class
+        {
+            bool IsUniqueUser(string username);
+            Task<LoginResponseDto> Login(LoginRequestDto loginRequestDto);
+            Task<Users> Register(RegistrationRequestDto registrationRequestDto);
+        }
     }
-}

@@ -22,6 +22,6 @@ namespace BlogModels
         public String Password { get; set; }
         [Required]
         public String Role { get; set; }
-        public string UsersName { get; set; }
+        
     }
 }
