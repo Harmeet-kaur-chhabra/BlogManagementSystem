@@ -73,7 +73,7 @@ namespace BlogAPI.Controllers
             _subRepo.Save();
             return Ok(result);
         }
-       
+       // [Authorize(Roles = "Admin")]
         [HttpDelete("{id}")]
         public IActionResult DeleteSubscription(int subscriptionId)
         {

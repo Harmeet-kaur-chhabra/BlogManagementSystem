@@ -1,11 +1,14 @@
 ﻿using BlogData.Repository.IRepository;
 using BlogModels;
+using BlogUtility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlogAPI.Controllers
 {
     [ApiController]
     [Route("api/Admin/[action]")]
+  //  [Authorize(Roles = SD.Role_Admin)]
     public class AdminController : ControllerBase
     {
         private readonly IBlogsRepository _blogRepository;
