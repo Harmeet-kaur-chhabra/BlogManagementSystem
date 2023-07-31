@@ -2,9 +2,13 @@
 @model IEnumerable<Blog>
 
 <h2>Blog Posts</h2>
+@if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Customer))
+{
+    
 <div class="col text-end pt-1">
     <a asp-controller="Blog" asp-action="Create" class="btn btn-outline-primary"><i class="bi bi-plus-square-fill"></i>Create Blog</a>
 </div>
+}
 
 @if (Model.Any())
 {
@@ -14,7 +18,8 @@
                 <th>Title</th>
                 <th>Content</th>
                 <th>Category</th>
-            </tr>
+                <th>Subscriptions Allowed</th>
+                </tr>
         </thead>
         <tbody>
             @foreach (var post in Model)
@@ -23,10 +28,16 @@
                     <td>@post.Title</td>
                     <td>@post.Content</td>
                     <td>@post.Category</td>
+                    <td>@post.SubscriptionsAllowed</td>
+                    
+                    @if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Customer))
+                    {
                     <td>
                         <a asp-action="Edit" asp-route-id="@post.Id">Edit</a> |
                         <a asp-action="Delete" asp-route-id="@post.Id">Delete</a>
                     </td>
+                    }
+                        
                 </tr>
             }
         </tbody>

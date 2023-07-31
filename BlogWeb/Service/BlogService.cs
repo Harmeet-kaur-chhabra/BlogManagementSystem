@@ -9,7 +9,7 @@ namespace BlogWeb.Service
     {
         private readonly HttpClient _httpClient;
         private const string BaseUrl = "https://localhost:7097";
-        public BlogService(HttpClient httpClient, IConfiguration configuration/*, IBlogRepository blogRepository*/)
+        public BlogService(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(BaseUrl);

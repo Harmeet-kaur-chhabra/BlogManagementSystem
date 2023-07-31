@@ -35,7 +35,7 @@ namespace BlogWeb.Controllers
                 if (ModelState.IsValid)
                 {
                     var createdSub = await _SubscriptionService.CreateSubscriptionAsync(subscription);
-                    TempData["Success"] = "Subscription Created Successfully";
+                    TempData["Success"] = "Subscription Successfully";
                     return RedirectToAction(nameof(Index), new { id = createdSub.Id });
                 }
 
@@ -52,7 +52,7 @@ namespace BlogWeb.Controllers
             public async Task<IActionResult> UnSubscribed(int id)
             {
                 await _SubscriptionService.DeleteSubscriptionAsync(id);
-                TempData["Success"] = "Subscription Deleted Successfully";
+                TempData["Success"] = "Subscription Successfully";
                 return RedirectToAction(nameof(Index));
             }
         }

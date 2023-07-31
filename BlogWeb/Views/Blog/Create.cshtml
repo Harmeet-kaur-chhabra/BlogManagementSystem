@@ -19,6 +19,11 @@
         <textarea asp-for="Category" class="form-control"></textarea>
         <span asp-validation-for="Category" class="text-danger"></span>
     </div>
+    <div class="form-group">
+        <label asp-for="SubscriptionsAllowed">Subscriptions Allowed:</label>
+        <textarea asp-for="SubscriptionsAllowed" class="form-control"></textarea>
+        <span asp-validation-for="SubscriptionsAllowed" class="text-danger"></span>
+    </div>
     <div class="col-5 offset-2">
         <a asp-controller="Blog" asp-action="Index" class="btn-primary btn form-control">Back </a>
     </div>

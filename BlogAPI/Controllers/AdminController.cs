@@ -8,7 +8,6 @@ namespace BlogAPI.Controllers
 {
     [ApiController]
     [Route("api/Admin/[action]")]
-  //  [Authorize(Roles = SD.Role_Admin)]
     public class AdminController : ControllerBase
     {
         private readonly IBlogsRepository _blogRepository;
@@ -66,7 +65,7 @@ namespace BlogAPI.Controllers
                 return NotFound();
 
             }
-            blog.IsRejected = false;
+            blog.IsRejected = true;
             _blogRepository.Save();
             return Ok(blog);
         }

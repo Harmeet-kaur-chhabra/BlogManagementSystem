@@ -39,7 +39,7 @@
                         @if(User.IsInRole(SD.Role_Admin)){
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Approved Blog</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Admin" asp-action="Index">Approved/Reject Blog</a>
                         </li>
                         }
                     </u>
@@ -55,7 +55,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted fixed-bottom" style="background-color: black;">
         <div class="container">
             &copy; 2023 - BlogManagementWeb <asp-area="" asp-controller="Home" </a>
         </div>
