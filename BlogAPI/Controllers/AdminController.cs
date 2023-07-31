@@ -63,7 +63,7 @@ namespace BlogAPI.Controllers
                 return NotFound();
 
             }
-            blog.IsRejected = false;
+            blog.IsRejected = true;
             _blogRepository.Save();
             return Ok(blog);
         }
