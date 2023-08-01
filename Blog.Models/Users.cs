@@ -15,8 +15,10 @@ namespace BlogModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
+        [StringLength(100)]
         public String Name { get; set; }
         [Required]
+        [StringLength(100)]
         public String Email { get; set; }
         [Required]
         public String Password { get; set; }

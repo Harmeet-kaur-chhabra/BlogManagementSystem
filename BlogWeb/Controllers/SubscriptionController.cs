@@ -27,9 +27,13 @@ namespace BlogWeb.Controllers
             {
                 return View();
             }
+        public ActionResult UnSubscribe()
+        {
+            return View();
+        }
 
 
-            [HttpPost]
+       
             public async Task<IActionResult> Subscribe(Subscription subscription)
             {
                 if (ModelState.IsValid)
@@ -41,19 +45,11 @@ namespace BlogWeb.Controllers
 
                 return View(subscription);
             }
-            public async Task<IActionResult> UnSubscribe(int id)
+            public async Task<IActionResult> UnSubscribe(Subscription subscription)
             {
-                var blog = await _SubscriptionService.GetSubscriptionByIdAsync(id);
-                return View(blog);
-            }
-
-            [HttpPost]
-            [ActionName("UnSubscribe")]
-            public async Task<IActionResult> UnSubscribed(int id)
-            {
-                await _SubscriptionService.DeleteSubscriptionAsync(id);
-                TempData["Success"] = "Subscription Successfully";
-                return RedirectToAction(nameof(Index));
+          //  await _SubscriptionService.DeleteSubscriptionAsync(Subscription);
+            TempData["Success"] = "UnSubscription Successfully";
+            return View(subscription);
             }
         }
     }

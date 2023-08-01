@@ -8,6 +8,7 @@ namespace BlogAPI.Controllers
 {
     [ApiController]
     [Route("api/Admin/[action]")]
+    
     public class AdminController : ControllerBase
     {
         private readonly IBlogsRepository _blogRepository;
@@ -32,6 +33,7 @@ namespace BlogAPI.Controllers
 
         }
         [HttpGet]
+        //[Authorize(Roles = "Admin")]
         public IActionResult ApprovedBlog(int id)
         {
             if (id == 0)
@@ -51,6 +53,7 @@ namespace BlogAPI.Controllers
             return Ok(blog);
         }
         [HttpGet]
+      // [Authorize(Roles = "Admin")]
         public IActionResult RejectBlog(int id)
         {
             if (id == 0)
